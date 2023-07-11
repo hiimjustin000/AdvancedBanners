@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.hiimjustin000.advancedbanners.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "ModelManagerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "mixins.advancedbanners.refmap.json"
+}

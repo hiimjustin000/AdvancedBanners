@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "advancedbanners:block/advanced_banner"
+    }
+  }
+}

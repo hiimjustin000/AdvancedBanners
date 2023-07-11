@@ -1,0 +1,13 @@
+{
+  "sources": [
+    {
+      "type": "single",
+      "resource": "advancedbanners:entity/banner_base"
+    },
+    {
+      "type": "directory",
+      "source": "entity/advanced_banner",
+      "prefix": "entity/advanced_banner/"
+    }
+  ]
+}

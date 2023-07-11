@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_name",
+              "source": "block_entity"
+            },
+            {
+              "function": "minecraft:copy_nbt",
+              "ops": [
+                {
+                  "op": "replace",
+                  "source": "Patterns",
+                  "target": "BlockEntityTag.Patterns"
+                },
+                {
+                  "op": "replace",
+                  "source": "Base",
+                  "target": "BlockEntityTag.Base"
+                }
+              ],
+              "source": "block_entity"
+            }
+          ],
+          "name": "advancedbanners:advanced_banner"
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "random_sequence": "advancedbanners:blocks/advanced_banner"
+}

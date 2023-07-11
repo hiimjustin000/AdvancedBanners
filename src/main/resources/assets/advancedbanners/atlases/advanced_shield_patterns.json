@@ -1,0 +1,17 @@
+{
+  "sources": [
+    {
+      "type": "single",
+      "resource": "advancedbanners:entity/shield_base"
+    },
+    {
+      "type": "single",
+      "resource": "advancedbanners:entity/shield_base_nopattern"
+    },
+    {
+      "type": "directory",
+      "source": "entity/advanced_shield",
+      "prefix": "entity/advanced_shield/"
+    }
+  ]
+}
