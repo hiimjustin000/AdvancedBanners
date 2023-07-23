@@ -34,7 +34,8 @@ public class BannerPresetReloadListener extends SimpleJsonResourceReloadListener
     protected void apply(Map<ResourceLocation, JsonElement> object, ResourceManager manager, ProfilerFiller profiler)
     {
         PRESETS.clear();
-        SortedMap<ResourceLocation, JsonElement> sortedMap = new TreeMap<>(object);
+        SortedMap<ResourceLocation, JsonElement> sortedMap = new TreeMap<>(Comparator.comparing(ResourceLocation::toString));
+        sortedMap.putAll(object);
         for (Map.Entry<ResourceLocation, JsonElement> entry : sortedMap.entrySet())
         {
             try

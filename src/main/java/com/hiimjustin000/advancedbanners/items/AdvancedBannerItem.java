@@ -42,7 +42,7 @@ public class AdvancedBannerItem extends StandingAndWallBlockItem
         CompoundTag blockEntityTag = BlockItem.getBlockEntityData(stack);
         int baseColor = blockEntityTag != null && blockEntityTag.contains("Base", 3) ? Mth.clamp(blockEntityTag.getInt("Base"), 0, 16777215) : 16777215;
         String baseText = Component.translatable("block.minecraft." + ColorUtilities.roundColor(baseColor).getName() + "_banner").getString();
-        components.add(Component.literal(baseText + " (" + ColorUtilities.toHex(baseColor) + ")").withStyle(Style.EMPTY.withColor(baseColor)));
+        components.add(Component.literal(baseText + " (#" + ColorUtilities.toHex(baseColor) + ")").withStyle(Style.EMPTY.withColor(baseColor)));
         if (blockEntityTag != null && blockEntityTag.contains("Patterns", 9))
         {
             ListTag patterns = blockEntityTag.getList("Patterns", 10);
@@ -58,7 +58,7 @@ public class AdvancedBannerItem extends StandingAndWallBlockItem
                     {
                         ResourceLocation id = new ResourceLocation(x);
                         String text = Component.translatable("block." + id.getNamespace() + ".banner." + id.getPath() + "." + rounded.getName()).getString();
-                        components.add(Component.literal(text + " (" + ColorUtilities.toHex(color) + ")").withStyle(Style.EMPTY.withColor(color)));
+                        components.add(Component.literal(text + " (#" + ColorUtilities.toHex(color) + ")").withStyle(Style.EMPTY.withColor(color)));
                     });
                 }
             }

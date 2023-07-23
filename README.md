@@ -1,13 +1,14 @@
 # Advanced Banners
+![CurseForge](https://cf.way2muchnoise.eu/title/892445.svg)
 An expansion of the vanilla Minecraft banner system.
 
 ## Features
 - 23 new banner patterns
 - 24-bit RGB color support
-- Custom banner preset system
+- Custom banner preset system (data/(datapack id)/banner_presets/(preset name).json)
 - Shield support (By way of advanced shield)
 - Advanced dyeing system
-- Custom dye preset system
+- Custom dye preset system (data/(datapack id)/dye_presets/(preset name).json)
 
 ## Patterns
 - Open Circle

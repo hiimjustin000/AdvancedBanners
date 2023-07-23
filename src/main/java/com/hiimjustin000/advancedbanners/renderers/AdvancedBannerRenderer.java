@@ -13,11 +13,6 @@ import com.mojang.datafixers.util.Pair;
 import com.mojang.math.Axis;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.CubeListBuilder;
-import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.model.geom.builders.MeshDefinition;
-import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -50,16 +45,6 @@ public class AdvancedBannerRenderer implements BlockEntityRenderer<AdvancedBanne
         flag = modelpart.getChild("flag");
         pole = modelpart.getChild("pole");
         bar = modelpart.getChild("bar");
-    }
-
-    public static LayerDefinition createBodyLayer()
-    {
-        MeshDefinition meshdefinition = new MeshDefinition();
-        PartDefinition partdefinition = meshdefinition.getRoot();
-        partdefinition.addOrReplaceChild("flag", CubeListBuilder.create().texOffs(0, 0).addBox(-10, 0, -2, 20, 40, 1), PartPose.ZERO);
-        partdefinition.addOrReplaceChild("pole", CubeListBuilder.create().texOffs(44, 0).addBox(-1, -30, -1, 2, 42, 2), PartPose.ZERO);
-        partdefinition.addOrReplaceChild("bar", CubeListBuilder.create().texOffs(0, 42).addBox(-10, -32, -1, 20, 2, 2), PartPose.ZERO);
-        return LayerDefinition.create(meshdefinition, 64, 64);
     }
 
     @Override

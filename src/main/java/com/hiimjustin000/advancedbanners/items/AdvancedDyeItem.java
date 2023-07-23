@@ -26,6 +26,6 @@ public class AdvancedDyeItem extends Item
         CompoundTag tag = stack.getTag();
         int color = Mth.clamp(tag != null && tag.contains("Color", 3) ? tag.getInt("Color") : 16777215, 0, 16777215);
         String text = Component.translatable("item.minecraft." + ColorUtilities.roundColor(color).getName() + "_dye").getString();
-        components.add(Component.literal(text + " (" + ColorUtilities.toHex(color) + ")").withStyle(Style.EMPTY.withColor(color)));
+        components.add(Component.literal(text + " (#" + ColorUtilities.toHex(color) + ")").withStyle(Style.EMPTY.withColor(color)));
     }
 }

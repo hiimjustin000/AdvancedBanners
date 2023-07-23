@@ -17,6 +17,8 @@ import net.minecraft.world.item.ItemStack;
 
 public class DyeMachineScreen extends AbstractContainerScreen<DyeMachineMenu>
 {
+    private static final ResourceLocation BG_LOCATION = new ResourceLocation(AdvancedBanners.MODID, "textures/gui/dye_machine.png");
+
     private EditBox rEdit;
     private EditBox gEdit;
     private EditBox bEdit;
@@ -217,8 +219,10 @@ public class DyeMachineScreen extends AbstractContainerScreen<DyeMachineMenu>
     protected void renderBg(GuiGraphics graphics, float ticks, int mX, int mY)
     {
         graphics.setColor(1, 1, 1, 1);
-        graphics.blit(new ResourceLocation(AdvancedBanners.MODID, "textures/gui/dye_machine.png"),
-                (width - imageWidth) / 2, (height - imageHeight) / 2, 0, 0, imageWidth, imageHeight);
+        graphics.blit(BG_LOCATION, leftPos, topPos, 0, 0, imageWidth, imageHeight);
+        Slot slot = menu.getSlot(0);
+        if (!slot.hasItem())
+            graphics.blit(BG_LOCATION, leftPos + slot.x, topPos + slot.y, imageWidth, 0, 16, 16);
         rEdit.render(graphics, mX, mY, ticks);
         gEdit.render(graphics, mX, mY, ticks);
         bEdit.render(graphics, mX, mY, ticks);
@@ -235,12 +239,6 @@ public class DyeMachineScreen extends AbstractContainerScreen<DyeMachineMenu>
         graphics.drawString(font, Component.literal("#"), 64, 39, 4210752, false);
     }
 
-    protected String toHex(String number)
-    {
-        String hex = Integer.toHexString(Integer.parseInt(number)).toUpperCase();
-        return "00".substring(0, 2 - hex.length()) + hex;
-    }
-
     @Override
     protected void slotClicked(Slot slot, int index, int button, ClickType type)
     {
@@ -249,13 +247,14 @@ public class DyeMachineScreen extends AbstractContainerScreen<DyeMachineMenu>
         if (stack.isEmpty())
             return;
         CompoundTag tag = stack.getOrCreateTag();
-        hEdit.setValue(ColorUtilities.toHex(tag.contains("Color", 3) ? tag.getInt("Color") : 16777215).substring(1));
+        hEdit.setValue(ColorUtilities.toHex(tag.contains("Color", 3) ? tag.getInt("Color") : 16777215));
         updateRGB();
     }
 
     protected void updateHex()
     {
-        hEdit.setValue(toHex(rEdit.getValue()) + toHex(gEdit.getValue()) + toHex(bEdit.getValue()));
+        hEdit.setValue(ColorUtilities.toHex((Integer.parseInt(rEdit.getValue()) << 16) |
+                (Integer.parseInt(gEdit.getValue()) << 8) | Integer.parseInt(bEdit.getValue())));
         updateItemDisplay();
     }
 
@@ -268,9 +267,10 @@ public class DyeMachineScreen extends AbstractContainerScreen<DyeMachineMenu>
 
     protected void updateRGB()
     {
-        rEdit.setValue(Integer.toString(Integer.parseInt(hEdit.getValue().substring(0, 2), 16)));
-        gEdit.setValue(Integer.toString(Integer.parseInt(hEdit.getValue().substring(2, 4), 16)));
-        bEdit.setValue(Integer.toString(Integer.parseInt(hEdit.getValue().substring(4, 6), 16)));
+        int color = Integer.parseInt(hEdit.getValue(), 16);
+        rEdit.setValue(Integer.toString(color >> 16 & 255));
+        gEdit.setValue(Integer.toString(color >> 8 & 255));
+        bEdit.setValue(Integer.toString(color & 255));
         updateItemDisplay();
     }
 }

@@ -53,6 +53,6 @@ public class ColorUtilities
     public static String toHex(int color)
     {
         String hex = Integer.toHexString(color).toUpperCase();
-        return "#000000".substring(0, 7 - hex.length()) + hex;
+        return "000000".substring(0, 6 - hex.length()) + hex;
     }
 }
