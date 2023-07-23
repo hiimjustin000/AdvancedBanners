@@ -1,5 +1,6 @@
 # Advanced Banners
 ![CurseForge](https://cf.way2muchnoise.eu/title/892445.svg)
+
 An expansion of the vanilla Minecraft banner system.
 
 ## Features
