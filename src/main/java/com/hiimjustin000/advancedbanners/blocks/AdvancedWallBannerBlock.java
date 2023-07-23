@@ -38,11 +38,13 @@ public class AdvancedWallBannerBlock extends AbstractAdvancedBannerBlock
         registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
+    @Override
     public boolean canSurvive(BlockState state, LevelReader reader, BlockPos pos)
     {
         return reader.getBlockState(pos.relative(state.getValue(FACING).getOpposite())).isSolid();
     }
 
+    @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState facingState,
                                   LevelAccessor accessor, BlockPos pos, BlockPos facingPos)
     {
@@ -51,11 +53,13 @@ public class AdvancedWallBannerBlock extends AbstractAdvancedBannerBlock
                 super.updateShape(state, direction, facingState, accessor, pos, facingPos);
     }
 
+    @Override
     public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context)
     {
         return SHAPES.get(state.getValue(FACING));
     }
 
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext context)
     {
         BlockState state = defaultBlockState();
@@ -76,16 +80,19 @@ public class AdvancedWallBannerBlock extends AbstractAdvancedBannerBlock
         return null;
     }
 
+    @Override
     public BlockState rotate(BlockState state, Rotation rotation)
     {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
+    @Override
     public BlockState mirror(BlockState state, Mirror mirror)
     {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
         builder.add(FACING);

@@ -36,20 +36,20 @@ import java.util.List;
 
 public class AdvancedBannerRenderer implements BlockEntityRenderer<AdvancedBannerBlockEntity>
 {
-    private final ModelPart flag;
-    private final ModelPart pole;
-    private final ModelPart bar;
-
     private static final ResourceLocation BANNER_SHEET = AdvancedBannerPatternsHolder.SHEET;
     private static final ResourceLocation SHIELD_SHEET = AdvancedShieldPatternsHolder.SHEET;
     private static final Material BANNER_BASE = new Material(BANNER_SHEET, new ResourceLocation(AdvancedBanners.MODID, "entity/banner_base"));
 
+    private final ModelPart flag;
+    private final ModelPart pole;
+    private final ModelPart bar;
+
     public AdvancedBannerRenderer(BlockEntityRendererProvider.Context context)
     {
         ModelPart modelpart = context.bakeLayer(ModelLayers.BANNER);
-        this.flag = modelpart.getChild("flag");
-        this.pole = modelpart.getChild("pole");
-        this.bar = modelpart.getChild("bar");
+        flag = modelpart.getChild("flag");
+        pole = modelpart.getChild("pole");
+        bar = modelpart.getChild("bar");
     }
 
     public static LayerDefinition createBodyLayer()
@@ -62,6 +62,7 @@ public class AdvancedBannerRenderer implements BlockEntityRenderer<AdvancedBanne
         return LayerDefinition.create(meshdefinition, 64, 64);
     }
 
+    @Override
     public void render(AdvancedBannerBlockEntity entity, float partialTick, PoseStack stack, MultiBufferSource source, int packedLight, int packedOverlay)
     {
         stack.pushPose();
@@ -73,33 +74,33 @@ public class AdvancedBannerRenderer implements BlockEntityRenderer<AdvancedBanne
             {
                 stack.translate(0.5F, 0.5F, 0.5F);
                 stack.mulPose(Axis.YP.rotationDegrees(-RotationSegment.convertToDegrees(state.getValue(AdvancedBannerBlock.ROTATION))));
-                this.pole.visible = true;
+                pole.visible = true;
             }
             else
             {
                 stack.translate(0.5F, -0.16666667F, 0.5F);
                 stack.mulPose(Axis.YP.rotationDegrees(-state.getValue(AdvancedWallBannerBlock.FACING).toYRot()));
                 stack.translate(0.0F, -0.3125F, -0.4375F);
-                this.pole.visible = false;
+                pole.visible = false;
             }
         }
         else
         {
             stack.translate(0.5F, 0.5F, 0.5F);
-            this.pole.visible = true;
+            pole.visible = true;
         }
 
         stack.pushPose();
         stack.scale(0.6666667F, -0.6666667F, -0.6666667F);
         VertexConsumer consumer = BANNER_BASE.buffer(source, RenderType::entitySolid);
-        this.pole.render(stack, consumer, packedLight, packedOverlay);
-        this.bar.render(stack, consumer, packedLight, packedOverlay);
+        pole.render(stack, consumer, packedLight, packedOverlay);
+        bar.render(stack, consumer, packedLight, packedOverlay);
         BlockPos pos = entity.getBlockPos();
-        this.flag.xRot = (-0.0125F + 0.01F * Mth.cos(Mth.TWO_PI * (((float)Math
+        flag.xRot = (-0.0125F + 0.01F * Mth.cos(Mth.TWO_PI * (((float)Math
                 .floorMod(pos.getX() * 7L + pos.getY() * 9L + pos.getZ() * 13L + (level != null ?
                         level.getGameTime() : 0L), 100L) + partialTick) / 100F))) * Mth.PI;
-        this.flag.y = -32.0F;
-        renderPatterns(stack, source, packedLight, packedOverlay, this.flag, BANNER_BASE, true, entity.getPatterns());
+        flag.y = -32.0F;
+        renderPatterns(stack, source, packedLight, packedOverlay, flag, BANNER_BASE, true, entity.getPatterns());
         stack.popPose();
         stack.popPose();
     }

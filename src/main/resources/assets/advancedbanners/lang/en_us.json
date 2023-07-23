@@ -369,5 +369,11 @@
   "block.minecraft.banner.advancedbanners.six_top.white": "White Sextuple Top",
   "block.minecraft.banner.advancedbanners.six_top.yellow": "Yellow Sextuple Top",
   "item.advancedbanners.advanced_shield": "Advanced Shield",
-  "itemGroup.advanced_banners": "Advanced Banners"
+  "item.advancedbanners.advanced_dye": "Advanced Dye",
+  "container.dye_machine": "Dye Machine",
+  "block.advancedbanners.dye_machine": "Dye Machine",
+  "container.advanced_loom": "Advanced Loom",
+  "block.advancedbanners.advanced_loom": "Advanced Loom",
+  "itemGroup.advanced_banners": "Advanced Banners",
+  "itemGroup.advanced_dye": "Advanced Dye"
 }

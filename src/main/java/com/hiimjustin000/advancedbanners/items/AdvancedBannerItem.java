@@ -41,9 +41,8 @@ public class AdvancedBannerItem extends StandingAndWallBlockItem
     {
         CompoundTag blockEntityTag = BlockItem.getBlockEntityData(stack);
         int baseColor = blockEntityTag != null && blockEntityTag.contains("Base", 3) ? Mth.clamp(blockEntityTag.getInt("Base"), 0, 16777215) : 16777215;
-        String baseColorTranslation = Component.translatable("block.minecraft." +
-                ColorUtilities.roundColor(baseColor).getName() + "_banner").getString();
-        components.add(Component.literal(baseColorTranslation + " (" + toHex(baseColor) + ")").withStyle(Style.EMPTY.withColor(baseColor)));
+        String baseText = Component.translatable("block.minecraft." + ColorUtilities.roundColor(baseColor).getName() + "_banner").getString();
+        components.add(Component.literal(baseText + " (" + ColorUtilities.toHex(baseColor) + ")").withStyle(Style.EMPTY.withColor(baseColor)));
         if (blockEntityTag != null && blockEntityTag.contains("Patterns", 9))
         {
             ListTag patterns = blockEntityTag.getList("Patterns", 10);
@@ -51,26 +50,19 @@ public class AdvancedBannerItem extends StandingAndWallBlockItem
             {
                 CompoundTag pattern = patterns.getCompound(i);
                 int color = Mth.clamp(pattern.getInt("Color"), 0, 16777215);
-                DyeColor dyeColor = ColorUtilities.roundColor(color);
+                DyeColor rounded = ColorUtilities.roundColor(color);
                 Holder<BannerPattern> holder = BannerPattern.byHash(pattern.getString("Pattern"));
                 if (holder != null)
                 {
                     holder.unwrapKey().map(x -> x.location().toShortLanguageKey()).ifPresent(x ->
                     {
                         ResourceLocation id = new ResourceLocation(x);
-                        String translation = Component.translatable("block." + id.getNamespace() + ".banner." + id.getPath() +
-                                "." + dyeColor.getName()).getString();
-                        components.add(Component.literal(translation + " (" + toHex(color) + ")").withStyle(Style.EMPTY.withColor(color)));
+                        String text = Component.translatable("block." + id.getNamespace() + ".banner." + id.getPath() + "." + rounded.getName()).getString();
+                        components.add(Component.literal(text + " (" + ColorUtilities.toHex(color) + ")").withStyle(Style.EMPTY.withColor(color)));
                     });
                 }
             }
         }
-    }
-
-    private static String toHex(int color)
-    {
-        String hx = Integer.toHexString(color).toUpperCase();
-        return "#000000".substring(0, 7 - hx.length()) + hx;
     }
 
     @Override

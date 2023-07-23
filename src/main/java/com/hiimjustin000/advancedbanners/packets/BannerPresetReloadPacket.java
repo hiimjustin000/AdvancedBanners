@@ -3,7 +3,6 @@ package com.hiimjustin000.advancedbanners.packets;
 import com.hiimjustin000.advancedbanners.listeners.BannerPresetReloadListener;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
 
@@ -22,7 +21,7 @@ public class BannerPresetReloadPacket
             ItemStack stack = new ItemStack(BannerPresetReloadListener.ADVANCED_BANNER_ITEM);
             CompoundTag tag = buffer.readNbt();
             if (tag != null)
-                BlockItem.setBlockEntityData(stack, BannerPresetReloadListener.ADVANCED_BANNER_BLOCK_ENTITY_TYPE, tag);
+                stack.setTag(tag);
             BannerPresetReloadListener.PRESETS.add(stack);
         }
     }
@@ -30,7 +29,7 @@ public class BannerPresetReloadPacket
     public void encode(FriendlyByteBuf buffer)
     {
         buffer.writeVarInt(BannerPresetReloadListener.PRESETS.size());
-        BannerPresetReloadListener.PRESETS.forEach(x -> buffer.writeNbt(BlockItem.getBlockEntityData(x)));
+        BannerPresetReloadListener.PRESETS.forEach(x -> buffer.writeNbt(x.getTag()));
     }
 
     public void handle(Supplier<NetworkEvent.Context> context)

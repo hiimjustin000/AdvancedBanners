@@ -1,0 +1,27 @@
+{
+  "values": [
+    "advancedbanners:open_circle",
+    "advancedbanners:quad_bottom",
+    "advancedbanners:quad_left",
+    "advancedbanners:quad_right",
+    "advancedbanners:quad_top",
+    "advancedbanners:quin_bottom",
+    "advancedbanners:quin_bottom_stripe",
+    "advancedbanners:quin_center",
+    "advancedbanners:quin_left",
+    "advancedbanners:quin_left_stripe",
+    "advancedbanners:quin_middle",
+    "advancedbanners:quin_right",
+    "advancedbanners:quin_right_stripe",
+    "advancedbanners:quin_top",
+    "advancedbanners:quin_top_stripe",
+    "advancedbanners:sep_bottom",
+    "advancedbanners:sep_bottom_middle",
+    "advancedbanners:sep_bottom_stripe",
+    "advancedbanners:sep_top",
+    "advancedbanners:sep_top_middle",
+    "advancedbanners:sep_top_stripe",
+    "advancedbanners:six_bottom",
+    "advancedbanners:six_top"
+  ]
+}

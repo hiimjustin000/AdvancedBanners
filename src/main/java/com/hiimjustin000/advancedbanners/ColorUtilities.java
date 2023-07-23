@@ -4,6 +4,7 @@ import net.minecraft.world.item.DyeColor;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class ColorUtilities
 {
@@ -40,7 +41,18 @@ public class ColorUtilities
             distances.put(colorName, r * r * 0.3f + g * g * 0.59f + b * b * 0.11f);
         }
 
-        float min = distances.values().stream().min(Float::compare).get();
-        return DyeColor.byName(distances.entrySet().stream().filter(entry -> entry.getValue() == min).findFirst().get().getKey(), DyeColor.WHITE);
+        Optional<Float> min = distances.values().stream().min(Float::compare);
+        if (min.isEmpty())
+            return DyeColor.WHITE;
+        Optional<Map.Entry<String, Float>> entry = distances.entrySet().stream().filter(e -> e.getValue() == (float)min.get()).findFirst();
+        if (entry.isEmpty())
+            return DyeColor.WHITE;
+        return DyeColor.byName(entry.get().getKey(), DyeColor.WHITE);
+    }
+
+    public static String toHex(int color)
+    {
+        String hex = Integer.toHexString(color).toUpperCase();
+        return "#000000".substring(0, 7 - hex.length()) + hex;
     }
 }

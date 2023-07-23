@@ -1,7 +1,7 @@
 package com.hiimjustin000.advancedbanners.entities;
 
 import com.hiimjustin000.advancedbanners.registries.BlockEntityTypeRegistry;
-import com.hiimjustin000.advancedbanners.registries.BlockRegistry;
+import com.hiimjustin000.advancedbanners.registries.ItemRegistry;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -35,20 +35,22 @@ public class AdvancedBannerBlockEntity extends BlockEntity implements Nameable
         super(BlockEntityTypeRegistry.ADVANCED_BANNER.get(), pos, state);
     }
 
+    @Override
     public Component getName()
     {
-        return this.name != null ? this.name : Component.translatable("block.advancedbanners.advanced_banner");
+        return name != null ? name : Component.translatable("block.advancedbanners.advanced_banner");
     }
 
     @Nullable
+    @Override
     public Component getCustomName()
     {
-        return this.name;
+        return name;
     }
 
     public void setCustomName(Component component)
     {
-        this.name = component;
+        name = component;
     }
 
     @Override
@@ -127,14 +129,9 @@ public class AdvancedBannerBlockEntity extends BlockEntity implements Nameable
         return patterns;
     }
 
-    public int getBaseColor()
-    {
-        return baseColor;
-    }
-
     public ItemStack getItem()
     {
-        ItemStack stack = new ItemStack(BlockRegistry.ADVANCED_BANNER.get());
+        ItemStack stack = new ItemStack(ItemRegistry.ADVANCED_BANNER.get());
         CompoundTag compoundTag = new CompoundTag();
         compoundTag.putInt("Base", baseColor);
         if (patternsTag != null)

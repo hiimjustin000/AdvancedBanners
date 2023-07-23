@@ -8,7 +8,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.entity.BannerBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -21,16 +20,19 @@ public abstract class AbstractAdvancedBannerBlock extends BaseEntityBlock
         super(properties);
     }
 
+    @Override
     public boolean isPossibleToRespawnInThis(BlockState state)
     {
         return true;
     }
 
+    @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state)
     {
         return new AdvancedBannerBlockEntity(pos, state);
     }
 
+    @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity entity, ItemStack stack)
     {
         if (level.isClientSide)
@@ -41,8 +43,9 @@ public abstract class AbstractAdvancedBannerBlock extends BaseEntityBlock
                     blockEntity.setCustomName(stack.getHoverName()));
     }
 
+    @Override
     public ItemStack getCloneItemStack(BlockGetter getter, BlockPos pos, BlockState state)
     {
-        return getter.getBlockEntity(pos) instanceof BannerBlockEntity entity ? entity.getItem() : super.getCloneItemStack(getter, pos, state);
+        return getter.getBlockEntity(pos) instanceof AdvancedBannerBlockEntity entity ? entity.getItem() : super.getCloneItemStack(getter, pos, state);
     }
 }

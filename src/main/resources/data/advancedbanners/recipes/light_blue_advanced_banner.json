@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:light_blue_wool"
+    },
+    "|": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " | ",
+    "###",
+    "###"
+  ],
+  "result": {
+    "item": "advancedbanners:advanced_banner",
+    "nbt": "{BlockEntityTag:{Base:3847130}}"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "W": {
+      "tag": "minecraft:planks"
+    },
+    "o": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    " W ",
+    "WWW",
+    "WoW"
+  ],
+  "result": {
+    "item": "advancedbanners:advanced_shield"
+  },
+  "show_notification": true
+}

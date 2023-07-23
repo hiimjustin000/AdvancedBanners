@@ -16,4 +16,7 @@ public class CreativeModeTabRegistry
     public static final RegistryObject<CreativeModeTab> ADVANCED_BANNERS = CREATIVE_MODE_TABS.register("advanced_banners", () ->
             CreativeModeTab.builder().icon(ItemRegistry.ADVANCED_BANNER.get()::getDefaultInstance)
                     .title(Component.translatable("itemGroup.advanced_banners")).build());
+    public static final RegistryObject<CreativeModeTab> ADVANCED_DYE = CREATIVE_MODE_TABS.register("advanced_dye", () ->
+            CreativeModeTab.builder().icon(ItemRegistry.ADVANCED_DYE.get()::getDefaultInstance)
+                    .title(Component.translatable("itemGroup.advanced_dye")).build());
 }

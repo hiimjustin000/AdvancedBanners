@@ -5,9 +5,9 @@ An expansion of the vanilla Minecraft banner system.
 - 23 new banner patterns
 - 24-bit RGB color support
 - Custom banner preset system
-- Shield support*
-
-\* By way of advanced shield
+- Shield support (By way of advanced shield)
+- Advanced dyeing system
+- Custom dye preset system
 
 ## Patterns
 - Open Circle

@@ -17,11 +17,12 @@ import net.minecraft.world.level.Level;
 
 public class AdvancedShieldDecorationRecipe extends CustomRecipe
 {
-    public AdvancedShieldDecorationRecipe(ResourceLocation location, CraftingBookCategory category)
+    public AdvancedShieldDecorationRecipe(ResourceLocation id, CraftingBookCategory category)
     {
-        super(location, category);
+        super(id, category);
     }
 
+    @Override
     public boolean matches(CraftingContainer container, Level level)
     {
         ItemStack banner = ItemStack.EMPTY;
@@ -34,7 +35,8 @@ public class AdvancedShieldDecorationRecipe extends CustomRecipe
             {
                 if (stack.getItem() instanceof AdvancedBannerItem)
                 {
-                    if (!banner.isEmpty()) return false;
+                    if (!banner.isEmpty())
+                        return false;
                     banner = stack;
                 }
                 else
@@ -49,18 +51,21 @@ public class AdvancedShieldDecorationRecipe extends CustomRecipe
         return !shield.isEmpty() && !banner.isEmpty();
     }
 
+    @Override
     public ItemStack assemble(CraftingContainer container, RegistryAccess access)
     {
         ItemStack banner = ItemStack.EMPTY;
         ItemStack shield = ItemStack.EMPTY;
 
-        for (int i = 0; i < container.getContainerSize(); ++i)
+        for (int i = 0; i < container.getContainerSize(); i++)
         {
             ItemStack stack = container.getItem(i);
             if (!stack.isEmpty())
             {
-                if (stack.getItem() instanceof AdvancedBannerItem) banner = stack;
-                else if (stack.is(ItemRegistry.ADVANCED_SHIELD.get())) shield = stack.copy();
+                if (stack.getItem() instanceof AdvancedBannerItem)
+                    banner = stack;
+                else if (stack.is(ItemRegistry.ADVANCED_SHIELD.get()))
+                    shield = stack.copy();
             }
         }
 
@@ -76,12 +81,14 @@ public class AdvancedShieldDecorationRecipe extends CustomRecipe
         return shield;
     }
 
+    @Override
     public boolean canCraftInDimensions(int width, int height)
     {
         return width * height >= 2;
     }
 
-    public RecipeSerializer<?> getSerializer()
+    @Override
+    public RecipeSerializer<AdvancedShieldDecorationRecipe> getSerializer()
     {
         return RecipeSerializerRegistry.ADVANCED_SHIELD_DECORATION.get();
     }
